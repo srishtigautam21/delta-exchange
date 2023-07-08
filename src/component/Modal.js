@@ -19,31 +19,7 @@ const Modal = ({ openModal, setOpenModal }) => {
         break;
       }
     }
-    // console.log(
-    //   "tyuikj",
-    //   [formData].findIndex((item) => {
-    //     console.log(item);
-    //     return item === "";
-    //   })
-    // );
-    // [formData].findIndex((item) => item === "") === -1
-
-    // for (let obj in formData) {
     if (flag !== true) {
-      // setMyData((prev, index) => ({ ...myData, [index]: formData }));
-      // let newDate = new Date();
-      // let date = newDate.getDate();
-      // let month = newDate.getMonth() + 1;
-      // let year = newDate.getFullYear();
-      // let lastUpdatedDate = `${date}/${month}/${year}`;
-      // console.log(lastUpdatedDate, new Date().toLocaleString() + "/");
-      // console.log(
-      //   new Date().toLocaleString([], {
-      //     year: "numeric",
-      //     month: "numeric",
-      //     day: "numeric",
-      //   })
-      // );
       setMyData([
         ...myData,
         {
@@ -65,13 +41,12 @@ const Modal = ({ openModal, setOpenModal }) => {
   };
   if (!openModal) return null;
   return ReactDom.createPortal(
-    // onClick={(e) => setOpenModal(false)}
     <div className='modal-background'>
       <div className='modal-container'>
         <div className='modal-content'>
-          <div>Add Members</div>
-          {error !== "" && <div>{error}</div>}
-          <label>
+          <div className='modal-header'>Add Members</div>
+          {error !== "" && <div className='error'>{error}</div>}
+          <label className='form-input'>
             Name
             <input
               type='text'
@@ -81,7 +56,7 @@ const Modal = ({ openModal, setOpenModal }) => {
               required
             />
           </label>
-          <label>
+          <label className='form-input'>
             Company
             <input
               type='text'
@@ -91,7 +66,7 @@ const Modal = ({ openModal, setOpenModal }) => {
               required
             />
           </label>
-          <label>
+          <label className='form-input'>
             Status
             <input
               type='text'
@@ -101,28 +76,38 @@ const Modal = ({ openModal, setOpenModal }) => {
               required
             />
           </label>
-          <label>
+          <label className='form-input'>
             Notes
             <input
               type='text'
               name='notes'
               value={formData.notes}
+              className='input-box'
               onChange={(e) => handleInputForm(e)}
               required
             />
           </label>
         </div>
-        <button className='cross-btn' onClick={() => setOpenModal(false)}>
+        <button
+          className='cross-btn'
+          onClick={() => {
+            setFormData({ name: "", company: "", status: "", notes: "" });
+            setOpenModal(false);
+          }}
+        >
           X
         </button>
         <button
           onClick={() =>
             setFormData({ name: "", company: "", status: "", notes: "" })
           }
+          className='modal-btn'
         >
           Cancel
         </button>
-        <button onClick={() => handleNewMember()}>Save</button>
+        <button onClick={() => handleNewMember()} className='modal-btn'>
+          Save
+        </button>
       </div>
     </div>,
     document.getElementById("portal")

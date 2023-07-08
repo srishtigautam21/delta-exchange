@@ -19,6 +19,7 @@
   width: max-content;
   display: flex;
   flex-direction: column;
+  box-shadow: 5px 5px 10px lightgrey;
   /* padding: 20px; */
 }
 .checkbox {

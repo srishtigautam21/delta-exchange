@@ -23,7 +23,6 @@ function App() {
       <MyTable />
       <Modal openModal={openModal} setOpenModal={setOpenModal} />
     </div>
-    // document.getElementById("portal")
   );
 }
 
