@@ -1,0 +1,24 @@
+.tableRow {
+  display: flex;
+  gap: 20px;
+  column-gap: 20px;
+}
+table {
+  /* border: 2px solid forestgreen; */
+  width: 800px;
+  height: 200px;
+}
+
+th {
+  /* border-bottom: 1px solid black; */
+  text-align: left;
+}
+
+td {
+  text-align: left;
+}
+.deleteBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
