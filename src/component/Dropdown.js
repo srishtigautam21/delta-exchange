@@ -7,9 +7,9 @@ const Dropdown = () => {
   const { myData, setMyData } = useData();
   const [open, setOpen] = useState(false);
   const [count, setCount] = useState(0);
+
   const handleCheckbox = (e) => {
     const { name, checked } = e.target;
-
     if (name === "allSelect") {
       let tempData = myData.map((item) => {
         return {
@@ -18,23 +18,21 @@ const Dropdown = () => {
         };
       });
       setMyData(tempData);
-      setCount(tempData.length);
+      setCount(tempData.filter((item) => item.isChecked === true).length);
     } else {
       let tempData = myData.map((item) => {
         if (item.company === name) {
-          setCount((c) => c + 1);
           return { ...item, isChecked: checked };
         } else {
           return item;
         }
       });
-      console.log(count);
+      setCount(tempData.filter((item) => item.isChecked === true).length);
       setMyData(tempData);
     }
   };
   const handleFilterTable = (e) => {
     const value = e.target.value;
-    console.log(value);
     setMyData([...myData.filter((item) => item.status === value)]);
   };
   return (
@@ -46,7 +44,7 @@ const Dropdown = () => {
         <div className='dropdown-content'>
           {open && (
             <>
-              <label className='checkbox'>
+              <label className='checkbox-label'>
                 <input
                   style={{ paddingLeft: "10px" }}
                   type='checkbox'
@@ -54,27 +52,31 @@ const Dropdown = () => {
                   checked={
                     myData.filter((item) => item?.isChecked !== true).length < 1
                   }
-                  onChange={(e) => handleCheckbox(e)}
+                  onChange={(e) => {
+                    handleCheckbox(e);
+                  }}
                 />
-                Select All
+                <div style={{ paddingLeft: "10px" }}>Select All</div>
               </label>
               {myData.map((item, index) => {
                 return (
-                  <div className='checkbox'>
+                  <label className='checkbox-label'>
                     <input
                       type='checkbox'
                       id='dropdown-checkbox'
                       name={item.company}
-                      onChange={(e) => handleCheckbox(e)}
+                      onChange={(e) => {
+                        handleCheckbox(e);
+                      }}
                       checked={item?.isChecked || false}
                     />
-                    <label
+                    <div
                       htmlFor='dropdown-checkbox'
                       style={{ paddingLeft: "10px" }}
                     >
                       {item.company}
-                    </label>
-                  </div>
+                    </div>
+                  </label>
                 );
               })}
             </>

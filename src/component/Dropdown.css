@@ -21,10 +21,10 @@
   flex-direction: column;
   box-shadow: 5px 5px 10px lightgrey;
 }
-.checkbox {
-  display: inline;
-  padding: 10px 10px 0 10px;
-}
 .statusDropdown {
   padding: 15px;
+}
+.checkbox-label {
+  display: flex;
+  padding: 10px;
 }

@@ -5,9 +5,7 @@ import { DeleteIcon } from "../Images/delete";
 
 const MyTable = () => {
   const { myData, setMyData } = useData();
-  console.log("vhjbjh", myData);
   const deleteRow = (rowId) => {
-    console.log(rowId, ...myData);
     setMyData([...myData?.filter((item, index) => index !== rowId)]);
   };
 
